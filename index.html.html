@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amutuhaire Lincoln — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0a0f1e;
+    --navy-2: #111827;
+    --navy-3: #1c2535;
+    --navy-4: #243047;
+    --accent: #00d4aa;
+    --accent-dim: #00d4aa22;
+    --accent-mid: #00d4aa55;
+    --text-primary: #f0f4ff;
+    --text-secondary: #8fa3c0;
+    --text-muted: #4a6080;
+    --border: #1e2d44;
+    --card-bg: #111827;
+    --pill-bg: #162236;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--navy);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 2.5rem;
+    background: rgba(10, 15, 30, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700; font-size: 1.1rem;
+    color: var(--accent); letter-spacing: 0.5px;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.85rem; color: var(--text-secondary);
+    text-decoration: none; letter-spacing: 0.3px;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 7rem 2.5rem 4rem;
+    max-width: 1100px; margin: 0 auto;
+    gap: 4rem;
+  }
+  .hero-text { flex: 1; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block;
+    width: 28px; height: 1px; background: var(--accent);
+  }
+  h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    font-weight: 700; line-height: 1.1;
+    margin-bottom: 0.3rem;
+    color: var(--text-primary);
+  }
+  .hero-role {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    color: var(--text-secondary); font-weight: 400;
+    margin-bottom: 1.8rem;
+  }
+  .hero-desc {
+    font-size: 1rem; color: var(--text-secondary);
+    max-width: 520px; line-height: 1.8;
+    margin-bottom: 2.5rem;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 0.75rem 1.8rem;
+    background: var(--accent); color: var(--navy);
+    font-weight: 600; font-size: 0.9rem;
+    border-radius: 6px; text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 0.75rem 1.8rem;
+    border: 1px solid var(--border); color: var(--text-primary);
+    font-size: 0.9rem; border-radius: 6px; text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hero-img-wrap {
+    flex: 0 0 340px;
+    position: relative;
+  }
+  .hero-img-wrap::before {
+    content: ''; position: absolute;
+    inset: -2px; border-radius: 18px;
+    background: linear-gradient(135deg, var(--accent) 0%, transparent 60%);
+    z-index: 0;
+  }
+  .hero-img {
+    width: 100%; border-radius: 16px;
+    display: block; position: relative; z-index: 1;
+    object-fit: cover; aspect-ratio: 4/5;
+    filter: grayscale(20%);
+  }
+  .hero-badge {
+    position: absolute; bottom: -16px; left: -16px; z-index: 2;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 0.8rem 1.2rem;
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .hero-badge span:first-child {
+    font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1.5px;
+    color: var(--text-muted);
+  }
+  .hero-badge strong {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.95rem; color: var(--accent);
+  }
+
+  /* SECTIONS */
+  section { padding: 5rem 2.5rem; max-width: 1100px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 0.75rem; letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 0.6rem; font-weight: 500;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-label::after {
+    content: ''; flex: 1; max-width: 50px;
+    height: 1px; background: var(--accent);
+  }
+  h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 700; margin-bottom: 3rem;
+    color: var(--text-primary);
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 3rem; align-items: start;
+  }
+  .about-text p {
+    color: var(--text-secondary); line-height: 1.9;
+    margin-bottom: 1.2rem; font-size: 0.97rem;
+  }
+  .about-stats {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .stat-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.4rem;
+    transition: border-color 0.2s;
+  }
+  .stat-card:hover { border-color: var(--accent-mid); }
+  .stat-card .stat-icon {
+    width: 36px; height: 36px;
+    background: var(--accent-dim);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
+  }
+  .stat-card .stat-value {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.4rem; font-weight: 700;
+    color: var(--text-primary); margin-bottom: 3px;
+  }
+  .stat-card .stat-label {
+    font-size: 0.78rem; color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: 0.8px;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+  }
+  .skill-group {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px; padding: 1.6rem;
+    transition: border-color 0.2s;
+  }
+  .skill-group:hover { border-color: var(--accent-mid); }
+  .skill-group-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.85rem; font-weight: 600;
+    color: var(--accent); text-transform: uppercase;
+    letter-spacing: 1px; margin-bottom: 1.2rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    padding: 5px 12px;
+    background: var(--pill-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    font-size: 0.78rem; color: var(--text-secondary);
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;
+  }
+  .project-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px; padding: 2rem;
+    display: flex; flex-direction: column;
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .project-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px; background: var(--accent);
+    opacity: 0; transition: opacity 0.2s;
+  }
+  .project-card:hover { border-color: var(--accent-mid); transform: translateY(-3px); }
+  .project-card:hover::before { opacity: 1; }
+  .project-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.5rem; font-weight: 700;
+    color: var(--border); margin-bottom: 1rem;
+    line-height: 1;
+  }
+  .project-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.1rem; font-weight: 600;
+    color: var(--text-primary); margin-bottom: 0.8rem;
+  }
+  .project-desc {
+    font-size: 0.88rem; color: var(--text-secondary);
+    line-height: 1.8; flex: 1; margin-bottom: 1.5rem;
+  }
+  .project-tech { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.2rem; }
+  .tech-tag {
+    padding: 3px 10px;
+    background: var(--accent-dim);
+    border: 1px solid var(--accent-mid);
+    border-radius: 4px;
+    font-size: 0.72rem; color: var(--accent);
+    font-weight: 500; letter-spacing: 0.3px;
+  }
+  .project-outcome {
+    font-size: 0.82rem; color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    padding-top: 1rem; margin-top: auto;
+  }
+  .project-outcome strong { color: var(--text-secondary); }
+
+  /* EXPERIENCE */
+  .timeline { position: relative; }
+  .timeline::before {
+    content: ''; position: absolute;
+    left: 20px; top: 0; bottom: 0;
+    width: 1px; background: var(--border);
+  }
+  .timeline-item {
+    display: flex; gap: 2rem;
+    margin-bottom: 2.5rem; position: relative;
+  }
+  .timeline-dot {
+    width: 40px; height: 40px; flex-shrink: 0;
+    background: var(--card-bg);
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; z-index: 1;
+    font-size: 1rem;
+  }
+  .timeline-content {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px; padding: 1.6rem;
+    flex: 1; transition: border-color 0.2s;
+  }
+  .timeline-content:hover { border-color: var(--accent-mid); }
+  .timeline-date {
+    font-size: 0.75rem; color: var(--accent);
+    text-transform: uppercase; letter-spacing: 1px;
+    margin-bottom: 0.5rem; font-weight: 500;
+  }
+  .timeline-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.05rem; font-weight: 600;
+    color: var(--text-primary); margin-bottom: 0.3rem;
+  }
+  .timeline-org {
+    font-size: 0.83rem; color: var(--text-muted);
+    margin-bottom: 1rem;
+  }
+  .timeline-bullets {
+    list-style: none; display: flex; flex-direction: column; gap: 6px;
+  }
+  .timeline-bullets li {
+    font-size: 0.87rem; color: var(--text-secondary);
+    display: flex; align-items: flex-start; gap: 8px;
+    line-height: 1.6;
+  }
+  .timeline-bullets li::before {
+    content: '→'; color: var(--accent); flex-shrink: 0;
+    margin-top: 1px; font-size: 0.8rem;
+  }
+
+  /* GOALS */
+  .goals-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .goal-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px; padding: 1.8rem;
+    transition: border-color 0.2s;
+  }
+  .goal-card:hover { border-color: var(--accent-mid); }
+  .goal-type {
+    font-size: 0.72rem; text-transform: uppercase;
+    letter-spacing: 1.5px; color: var(--accent);
+    font-weight: 600; margin-bottom: 1rem;
+  }
+  .goal-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .goal-list li {
+    font-size: 0.88rem; color: var(--text-secondary);
+    display: flex; align-items: flex-start; gap: 10px;
+    line-height: 1.6;
+  }
+  .goal-list li::before {
+    content: ''; display: block; flex-shrink: 0;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent); margin-top: 8px;
+  }
+
+  /* CONTACT */
+  .contact-wrap {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px; padding: 3rem;
+    text-align: center;
+  }
+  .contact-wrap h2 { margin-bottom: 0.8rem; }
+  .contact-wrap p {
+    color: var(--text-secondary); margin-bottom: 2.5rem;
+    font-size: 0.95rem;
+  }
+  .contact-links {
+    display: flex; justify-content: center;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .contact-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 0.7rem 1.4rem;
+    background: var(--pill-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px; text-decoration: none;
+    color: var(--text-secondary); font-size: 0.88rem;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .contact-link:hover { border-color: var(--accent); color: var(--accent); }
+  .contact-link svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 2.5rem;
+    text-align: center;
+    color: var(--text-muted); font-size: 0.8rem;
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--navy); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { flex-direction: column-reverse; padding: 6rem 1.5rem 3rem; gap: 2rem; }
+    .hero-img-wrap { flex: none; width: 100%; max-width: 320px; margin: 0 auto; }
+    section { padding: 3.5rem 1.5rem; }
+    .about-grid, .skills-grid, .projects-grid, .goals-grid { grid-template-columns: 1fr; }
+    .about-stats { grid-template-columns: 1fr 1fr; }
+    .timeline::before { left: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">AL.</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div style="max-width:1100px; margin:0 auto;">
+  <div class="hero">
+    <div class="hero-text">
+      <p class="hero-eyebrow">Portfolio</p>
+      <h1>Amutuhaire<br>Lincoln</h1>
+      <p class="hero-role">Computer Science & Engineering Student</p>
+      <p class="hero-desc">
+        Aspiring Cybersecurity Analyst with a deep interest in networking infrastructure and
+        digital defence. Currently building hands-on expertise at Uganda Christian University —
+        one packet at a time.
+      </p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn-primary">Get in touch</a>
+        <a href="#projects" class="btn-outline">View my work</a>
+      </div>
+    </div>
+    <div class="hero-img-wrap">
+      <img
+        src="https://media.licdn.com/dms/image/v2/D4D03AQH3Q1Q1Q1Q1Q1/profile-displayphoto-shrink_400_400/0/1700000000000"
+        class="hero-img"
+        alt="Amutuhaire Lincoln"
+        onerror="this.style.display='none'; this.parentElement.querySelector('.hero-fallback').style.display='flex';"
+      />
+      <div class="hero-fallback" style="display:none; width:100%; aspect-ratio:4/5; background:var(--navy-3); border-radius:16px; align-items:center; justify-content:center; position:relative; z-index:1;">
+        <span style="font-family:'Space Grotesk',sans-serif; font-size:4rem; font-weight:700; color:var(--accent); opacity:0.4;">AL</span>
+      </div>
+      <div class="hero-badge">
+        <span>Currently</span>
+        <strong>Year 1 · Semester 2</strong>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-label">About me</p>
+  <h2>Building tomorrow's<br>secure networks</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        I'm a first-year Computer Science and Engineering student at Uganda Christian University,
+        driven by a passion for understanding how networks are built, secured, and optimised.
+        My focus is on the intersection of networking infrastructure and cybersecurity — knowing
+        that the same knowledge that connects systems is what protects them.
+      </p>
+      <p>
+        Through practical seminars and independent projects, I have moved from theory into
+        hands-on configuration of Cisco devices, VLAN architecture, and inter-network routing.
+        I believe in learning by doing, documenting the journey, and sharing what I discover.
+      </p>
+      <p>
+        My long-term goal is to become a Cybersecurity Analyst, defending organisational
+        infrastructure against evolving threats. I hold strong team collaboration skills and thrive
+        in technically demanding environments that push me to think critically and solve problems.
+      </p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-card">
+        <div class="stat-icon">🎓</div>
+        <div class="stat-value">2028</div>
+        <div class="stat-label">Expected graduation</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🔐</div>
+        <div class="stat-value">Cyber</div>
+        <div class="stat-label">Career focus</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🌐</div>
+        <div class="stat-value">UCU</div>
+        <div class="stat-label">Uganda Christian University</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">📍</div>
+        <div class="stat-value">Mukono</div>
+        <div class="stat-label">Uganda</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" style="background: var(--navy-2); max-width:100%; padding: 5rem 0;">
+  <div style="max-width:1100px; margin:0 auto; padding: 0 2.5rem;">
+    <p class="section-label">Technical skills</p>
+    <h2>What I work with</h2>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-title">🌐 Networking</div>
+        <div class="skill-tags">
+          <span class="tag">VLAN Configuration</span>
+          <span class="tag">Inter-VLAN Routing</span>
+          <span class="tag">Cisco IOS (CLI)</span>
+          <span class="tag">Switch Configuration</span>
+          <span class="tag">Router Security</span>
+          <span class="tag">TCP/IP</span>
+          <span class="tag">DHCP / DNS</span>
+          <span class="tag">IP Addressing</span>
+          <span class="tag">Network Segmentation</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">🔐 Cybersecurity</div>
+        <div class="skill-tags">
+          <span class="tag">Access Control</span>
+          <span class="tag">Password Encryption</span>
+          <span class="tag">SSH Remote Access</span>
+          <span class="tag">Router Hardening</span>
+          <span class="tag">Secure Device Management</span>
+          <span class="tag">OSI Model</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">💻 Programming & Tools</div>
+        <div class="skill-tags">
+          <span class="tag">Python</span>
+          <span class="tag">C</span>
+          <span class="tag">C++</span>
+          <span class="tag">Cisco Packet Tracer</span>
+          <span class="tag">SolidWorks</span>
+          <span class="tag">CLI / Terminal</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-label">Projects</p>
+  <h2>What I've built</h2>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-num">01</div>
+      <div class="project-title">Enterprise Network Design & Implementation</div>
+      <div class="project-desc">
+        Designed and deployed a fully functional multi-VLAN enterprise network during the
+        UCU Networking Seminar. The project involved planning the logical topology, assigning
+        VLAN segments to departments, implementing inter-VLAN routing via router sub-interfaces,
+        and securing all devices from unauthorised access.
+      </div>
+      <div class="project-tech">
+        <span class="tech-tag">Cisco IOS</span>
+        <span class="tech-tag">VLANs</span>
+        <span class="tech-tag">Inter-VLAN Routing</span>
+        <span class="tech-tag">Packet Tracer</span>
+        <span class="tech-tag">SSH</span>
+      </div>
+      <div class="project-outcome">
+        <strong>Outcome:</strong> Successfully achieved cross-VLAN and cross-network communication;
+        presented the solution to peers and facilitators.
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-num">02</div>
+      <div class="project-title">Packet Tracer Network Simulation</div>
+      <div class="project-desc">
+        Independently replicated a physical lab network topology in Cisco Packet Tracer during
+        a public holiday assignment. Designed IP addressing schemes, replicated VLAN configurations,
+        and validated end-to-end connectivity through systematic troubleshooting.
+      </div>
+      <div class="project-tech">
+        <span class="tech-tag">Cisco Packet Tracer</span>
+        <span class="tech-tag">IP Addressing</span>
+        <span class="tech-tag">VLAN Design</span>
+        <span class="tech-tag">Troubleshooting</span>
+      </div>
+      <div class="project-outcome">
+        <strong>Outcome:</strong> Verified full network functionality; strengthened independent
+        problem-solving and network design skills.
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-num">03</div>
+      <div class="project-title">3D Engineering Modelling</div>
+      <div class="project-desc">
+        Created precision engineering models using SolidWorks, applying design-thinking principles
+        to translate conceptual ideas into detailed 3D representations. Strengthened spatial
+        reasoning and technical documentation skills.
+      </div>
+      <div class="project-tech">
+        <span class="tech-tag">SolidWorks</span>
+        <span class="tech-tag">3D Modelling</span>
+        <span class="tech-tag">Engineering Design</span>
+      </div>
+      <div class="project-outcome">
+        <strong>Outcome:</strong> Developed proficiency in CAD modelling; applied engineering
+        design principles in a practical context.
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-num">04</div>
+      <div class="project-title">Hardware Repair & Maintenance</div>
+      <div class="project-desc">
+        Performed hands-on troubleshooting and maintenance of computer hardware systems.
+        Diagnosed hardware faults, replaced components, and restored system functionality —
+        building a strong foundation in understanding computer architecture from the ground up.
+      </div>
+      <div class="project-tech">
+        <span class="tech-tag">Hardware Diagnostics</span>
+        <span class="tech-tag">Component Repair</span>
+        <span class="tech-tag">System Maintenance</span>
+      </div>
+      <div class="project-outcome">
+        <strong>Outcome:</strong> Gained practical hardware competency and a deeper understanding
+        of computer architecture.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" style="background: var(--navy-2); max-width:100%; padding: 5rem 0;">
+  <div style="max-width:1100px; margin:0 auto; padding: 0 2.5rem;">
+    <p class="section-label">Experience</p>
+    <h2>My journey so far</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot">🌐</div>
+        <div class="timeline-content">
+          <div class="timeline-date">June 2026</div>
+          <div class="timeline-title">Networking Seminar — Participant & Presenter</div>
+          <div class="timeline-org">Uganda Christian University · Mukono, Uganda</div>
+          <ul class="timeline-bullets">
+            <li>Configured Cisco switches and routers from scratch using the IOS command-line interface</li>
+            <li>Designed and implemented VLAN-based network segmentation across multiple switch ports</li>
+            <li>Implemented inter-VLAN routing using router sub-interfaces, enabling cross-VLAN communication</li>
+            <li>Applied router security measures including encrypted passwords, console access control, and SSH</li>
+            <li>Designed and simulated complete network topologies independently using Cisco Packet Tracer</li>
+            <li>Presented networking solutions, design rationale, and configurations to peers and facilitators</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot">🎓</div>
+        <div class="timeline-content">
+          <div class="timeline-date">2025 — Present</div>
+          <div class="timeline-title">Bachelor of Computer Science and Engineering</div>
+          <div class="timeline-org">Uganda Christian University · Year 1, Semester 2</div>
+          <ul class="timeline-bullets">
+            <li>Studying core CS & Engineering modules including networking, programming, and systems design</li>
+            <li>Actively participating in practical labs and hands-on technical seminars</li>
+            <li>Expected graduation: 2028</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GOALS -->
+<section id="goals">
+  <p class="section-label">Career goals</p>
+  <h2>Where I'm headed</h2>
+  <div class="goals-grid">
+    <div class="goal-card">
+      <div class="goal-type">⚡ Short-term</div>
+      <ul class="goal-list">
+        <li>Obtain industry cybersecurity certifications (CompTIA Security+, Cisco CCNA)</li>
+        <li>Deepen networking expertise through advanced lab projects</li>
+        <li>Build a portfolio of cybersecurity and networking projects</li>
+        <li>Secure an internship or attachment in an IT or security team</li>
+        <li>Contribute to open-source security or networking tools</li>
+      </ul>
+    </div>
+    <div class="goal-card">
+      <div class="goal-type">🚀 Long-term</div>
+      <ul class="goal-list">
+        <li>Become a professional Cybersecurity Analyst in a leading organisation</li>
+        <li>Earn advanced certifications: CEH, CISSP, or equivalent</li>
+        <li>Specialise in network security, threat detection, and incident response</li>
+        <li>Contribute to protecting organisational infrastructure across East Africa</li>
+        <li>Mentor upcoming IT students in networking and cybersecurity</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="background: var(--navy-2); max-width:100%; padding:5rem 0;">
+  <div style="max-width:800px; margin:0 auto; padding: 0 2.5rem;">
+    <div class="contact-wrap">
+      <p class="section-label" style="justify-content:center;">Contact</p>
+      <h2>Let's connect</h2>
+      <p>Open to networking opportunities, collaborations, and conversations about cybersecurity and networking. Reach out through any of the channels below.</p>
+      <div class="contact-links">
+        <a href="mailto:lincolnamutuhaire14@gmail.com" class="contact-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+          lincolnamutuhaire14@gmail.com
+        </a>
+        <a href="tel:+256703044423" class="contact-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          +256 703 044 423
+        </a>
+        <a href="https://www.linkedin.com/in/lincoln-amutuhaire-8119b8407" target="_blank" class="contact-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://medium.com/@lincolnamutuhaire14" target="_blank" class="contact-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v16H4z" rx="2"/><path d="M8 9h8M8 12h6M8 15h4"/></svg>
+          Medium Blog
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Amutuhaire Lincoln · Computer Science & Engineering · Uganda Christian University</p>
+</footer>
+
+<script>
+  document.querySelectorAll('.hero-img').forEach(img => {
+    img.addEventListener('error', function() {
+      this.style.display = 'none';
+      const fallback = this.parentElement.querySelector('.hero-fallback');
+      if (fallback) fallback.style.display = 'flex';
+    });
+  });
+</script>
+
+</body>
+</html>
